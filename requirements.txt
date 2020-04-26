@@ -1,4 +1,4 @@
 flask
 flask_session
-werkzeug
+werkzeug==0.16.0
 gunicorn
