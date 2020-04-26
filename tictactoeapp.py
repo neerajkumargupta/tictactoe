@@ -3,7 +3,7 @@ from flask_session import Session
 from tempfile import mkdtemp
 
 app = Flask(__name__)
-app.run(host='0.0.0.0')
+#app.run(host='0.0.0.0')
 
 app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_PERMANANET"] = False
