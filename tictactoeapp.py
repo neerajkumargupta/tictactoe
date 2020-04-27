@@ -21,17 +21,19 @@ def index():
 @app.route("/play/<int:row>/<int:col>")
 def play(row,col):
         turn = session["turn"]
+        print(f"current value of Turn {turn}")
         session["board"][row][col] = turn
-        
+        print(f"current value of session {session}")
         if turn == "X":
             session["turn"] = "Y"
         elif turn == "Y":
             session["turn"] = "X"
-
+        print(f"url   {url_for('index')}")
         return redirect(url_for("index"))
 
 @app.route("/reset")
 def reset():
         session["board"] = [[None,None,None], [None,None,None], [None,None,None]]
         session["turn"] = "X"
+        print(f"reset  value of session {session}")
         return redirect(url_for("index"))
