@@ -10,7 +10,8 @@ app.secret_key = "super secret key"
 app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_PERMANANET"] = False
 app.config["SESSION_TYPE"] = "filesystem"
-Session(app)
+sess = Session()
+sess.init_app(app)
 
 @app.before_request
 def make_session_permanent():
