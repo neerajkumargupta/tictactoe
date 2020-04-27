@@ -1,6 +1,7 @@
 from flask import Flask, render_template, session, redirect, url_for
 from flask_session import Session
 from tempfile import mkdtemp
+import sys
 
 app = Flask(__name__)
 #app.run(host='0.0.0.0')
@@ -30,6 +31,7 @@ def play(row,col):
         elif session["turn"] == "Y":
             session["turn"] = "X"
         print(f"url   {url_for('index')}")
+        sys.stdout.flush()
         return redirect(url_for("index"))
 
 @app.route("/reset")
@@ -37,4 +39,5 @@ def reset():
         session["board"] = [[None,None,None], [None,None,None], [None,None,None]]
         session["turn"] = "X"
         print(f"reset  value of session {session}")
+        sys.stdout.flush()
         return redirect(url_for("index"))
