@@ -22,7 +22,7 @@ def index():
 @app.route("/play/<int:row>/<int:col>")
 def play(row,col):
         #turn = session["turn"]
-        print(f"current value of Turn {session['turn']}")
+        print(f"current value of Turn {session}")
         session["board"][row][col] = session["turn"]
         print(f"current value of session {session}")
         if session["turn"] == "X":
