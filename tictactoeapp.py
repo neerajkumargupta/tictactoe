@@ -4,6 +4,7 @@ from tempfile import mkdtemp
 
 app = Flask(__name__)
 #app.run(host='0.0.0.0')
+app.secret_key = "super secret key"
 
 app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_PERMANANET"] = False
@@ -20,13 +21,13 @@ def index():
 
 @app.route("/play/<int:row>/<int:col>")
 def play(row,col):
-        turn = session["turn"]
-        print(f"current value of Turn {turn}")
-        session["board"][row][col] = turn
+        #turn = session["turn"]
+        print(f"current value of Turn {session['turn']}")
+        session["board"][row][col] = session["turn"]
         print(f"current value of session {session}")
-        if turn == "X":
+        if session["turn"] == "X":
             session["turn"] = "Y"
-        elif turn == "Y":
+        elif session["turn"] == "Y":
             session["turn"] = "X"
         print(f"url   {url_for('index')}")
         return redirect(url_for("index"))
