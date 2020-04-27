@@ -5,11 +5,10 @@ import sys
 
 app = Flask(__name__)
 #app.run(host='0.0.0.0')
-app.secret_key = "super secret key"
-
+#app.secret_key = "super secret key"
 app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_PERMANANET"] = False
-app.config["SESSION_TYPE"] = "filesystem"
+app.config["SESSION_TYPE"] = "memcached"
 sess = Session()
 sess.init_app(app)
 
