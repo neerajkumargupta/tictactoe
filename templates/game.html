@@ -1,5 +1,21 @@
 {% extends "layout.html" %}
+
 {% block body %}
+<style>
+  table {
+      border-collapse: collapse;
+  }
+  td {
+      border: 1px solid black;
+      width: 150px;
+      height: 150px;
+      font-size: 30px;
+      text-align: center;
+  }
+  td > a {
+      font-size: 18px;
+  }
+  </style>
         <table>
             {% for i in range(3) %}
               <tr>

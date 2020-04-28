@@ -12,8 +12,8 @@ app.config["SECRET_KEY"] = "super secret key"
 Session(app)
 #sess.init_app(app)
 #session.permanent = False
-player1 = None
-player2 = None
+#player1 = None
+#player2 = None
 
 @app.route("/")
 def load():
@@ -28,9 +28,10 @@ def start():
     print(f"Player 2   {player2}")
     print(f"Session   {session}")
     
-    if "board" not in session:
-        session["board"] = [[None,None,None], [None,None,None], [None,None,None]]
-        session["turn"] = player1
+    session["board"] = [[None,None,None], [None,None,None], [None,None,None]]
+    session["turn"] = player1
+    session["player1"] = player1
+    session["player2"] = player2
     
     print(f"Session 2   {session}")
     sys.stdout.flush()
@@ -41,19 +42,22 @@ def index():
     
     if "board" not in session:
         session["board"] = [[None,None,None], [None,None,None], [None,None,None]]
-        session["turn"] = player1
+        session["turn"] = session["player1"]
     return render_template("game.html", game=session["board"], turn=session["turn"])
 
 @app.route("/play/<int:row>/<int:col>")
 def play(row,col):
         #turn = session["turn"]
         print(f"current value of Turn in session {session}")
+
         session["board"][row][col] = session["turn"]
         print(f"current value of session {session}")
-        if session["turn"] == player1:
-            session["turn"] = player2
-        elif session["turn"] == player2:
-            session["turn"] = player1
+        print("Player 1  " +  session["player1"])
+        print("Player 2  " +  session["player2"])
+        if session["turn"] == session["player1"]:
+            session["turn"] = session["player2"]
+        elif session["turn"] == session["player2"]:
+            session["turn"] = session["player1"]
         print(f"url   {url_for('index')}")
         sys.stdout.flush()
         return redirect(url_for("index"))
@@ -61,7 +65,7 @@ def play(row,col):
 @app.route("/reset")
 def reset():
         session["board"] = [[None,None,None], [None,None,None], [None,None,None]]
-        session["turn"] = "X"
+        session["turn"] = session["player1"]
         print(f"reset  value of session {session}")
         sys.stdout.flush()
         return redirect(url_for("index"))

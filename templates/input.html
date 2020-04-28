@@ -1,9 +1,30 @@
 {% extends "layout.html" %}
 {% block body %}
     <form action="/start" method="POST">
-    Player Information:<br>
-      <input type="text" name="Player1"><br>
-      <input type="text" name="Player2"><br>
-      <input type="submit" value="Submit">
+     <h1>Player Information:</h1>
+     <br>
+     <table>
+       <tr>
+         <td>
+          <label for="Player1">Enter name for Player1:</label>      
+         </td>
+         <td>
+          <input type="text" name="Player1">
+        </td>
+       </tr>
+       <tr>
+        <td>
+          <label for="Player2">Enter name for Player2:</label>      
+        </td>
+        <td>
+          <input type="text" name="Player2">
+       </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="submit" value="Submit">
+        </td>
+       </tr>
+     </table>
     </form>
 {% endblock %}
