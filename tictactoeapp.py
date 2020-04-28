@@ -8,9 +8,9 @@ app = Flask(__name__)
 app.secret_key = "super secret key"
 #app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_PERMANANET"] = False
-#app.config["SESSION_TYPE"] = "filesystem"
+app.config["SESSION_TYPE"] = "filesystem"
 app.config["SECRET_KEY"] = "super secret key"
-Session(app)
+sess = Session(app)
 #sess.init_app(app)
 #session.permanent = False
 
@@ -47,3 +47,9 @@ def reset():
         sys.stdout.flush()
         return redirect(url_for("index"))
 
+if __name__ == "__main__":
+    app.secret_key = 'super secret key'
+    app.config['SESSION_TYPE'] = 'filesystem'
+    sess.init_app(app)
+    app.debug = True
+    app.run()
