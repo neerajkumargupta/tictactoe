@@ -1,0 +1,19 @@
+-------------------- Auto-Git Log --------------------
+		Tue Apr 28 2020 16:14:33 GMT+0530 (India Standard Time)
+------------------------------------------------------
+
+Modified files:
+* templates/game.html
+* templates/input.html
+* templates/layout.html
+* tictactoeapp.py
+
+
+Created files:
+* .autogit/logs/log-28-3-2020-15-44-27.txt
+
+
+Deleted files:
+
+
+Renamed files:

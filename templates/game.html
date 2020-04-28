@@ -2,20 +2,28 @@
 
 {% block body %}
 <style>
-  table {
-      border-collapse: collapse;
+  table.cinereousTable {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    border: 7px solid #948473;
+    background-color: #FFE3C6;
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    border-collapse: collapse;
   }
-  td {
-      border: 1px solid black;
-      width: 150px;
-      height: 150px;
-      font-size: 30px;
-      text-align: center;
+  table.cinereousTable td, table.cinereousTable th {
+    border: 2px solid #948473;
+    padding: 4px 4px;
   }
-  td > a {
-      font-size: 18px;
+  table.cinereousTable tbody td {
+    font-size: 14px;
+    font-weight: bold;
+    color: #191D1C;
   }
-  </style>
+  table.cinereousTable tfoot td {
+    font-size: 16px;
+  }  
+</style>
         <table>
             {% for i in range(3) %}
               <tr>
