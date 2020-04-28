@@ -6,7 +6,7 @@ import sys
 app = Flask(__name__)
 #app.run(host='0.0.0.0')
 app.config["SESSION_FILE_DIR"] = mkdtemp()
-app.config["SESSION_PERMANANET"] = False
+#app.config["SESSION_PERMANANET"] = False
 #app.config["SESSION_TYPE"] = "filesystem"
 app.config["SECRET_KEY"] = "super secret key"
 sess = Session(app)
