@@ -5,28 +5,31 @@ import sys
 
 app = Flask(__name__)
 #app.run(host='0.0.0.0')
-app.secret_key = "super secret key"
-#app.config["SESSION_FILE_DIR"] = mkdtemp()
+app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_PERMANANET"] = False
 #app.config["SESSION_TYPE"] = "filesystem"
 app.config["SECRET_KEY"] = "super secret key"
 sess = Session(app)
 #sess.init_app(app)
 #session.permanent = False
+player1 = None
+player2 = None
 
-@app.route("/", methods=['GET','POST'])
+@app.route("/")
 def load():
-    if request.method == 'POST':
-        player1=request.form['Player1']
-        player2=request.form['Player2']
-        session["board"] = [[None,None,None], [None,None,None], [None,None,None]]
-        session["turn"] = player1   
+    return render_template("input.html")
 
-
-    return redirect(url_for("index",player1,player2))
+@app.route("/start", methods=["GET", "POST"])
+def start():
+    player1 = request.form.get("Player1", "X")
+    player2 = request.form.get("Player2", "Y")
+    print(f"Player 1   {player1}")
+    print(f"Player 2   {player2}")
+    sys.stdout.flush()
+    return redirect(url_for("index"))
 
 @app.route("/game")
-def index(player1, player2):
+def index():
     
     if "board" not in session:
         session["board"] = [[None,None,None], [None,None,None], [None,None,None]]
@@ -57,8 +60,8 @@ def reset():
 
 @app.route("/back")
 def back():
-        session["board"] = [[None,None,None], [None,None,None], [None,None,None]]
-        session["turn"] = None
+        session.pop("board")
+        session.pop("turn")
         return redirect(url_for("load"))
 
 if __name__ == "__main__":
