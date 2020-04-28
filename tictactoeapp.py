@@ -6,10 +6,10 @@ import sys
 app = Flask(__name__)
 #app.run(host='0.0.0.0')
 app.config["SESSION_FILE_DIR"] = mkdtemp()
-#app.config["SESSION_PERMANANET"] = False
-#app.config["SESSION_TYPE"] = "filesystem"
+app.config["SESSION_PERMANANET"] = False
+app.config["SESSION_TYPE"] = "filesystem"
 app.config["SECRET_KEY"] = "super secret key"
-sess = Session(app)
+Session(app)
 #sess.init_app(app)
 #session.permanent = False
 player1 = None
@@ -23,8 +23,16 @@ def load():
 def start():
     player1 = request.form.get("Player1", "X")
     player2 = request.form.get("Player2", "Y")
+    
     print(f"Player 1   {player1}")
     print(f"Player 2   {player2}")
+    print(f"Session   {session}")
+    
+    if "board" not in session:
+        session["board"] = [[None,None,None], [None,None,None], [None,None,None]]
+        session["turn"] = player1
+    
+    print(f"Session 2   {session}")
     sys.stdout.flush()
     return redirect(url_for("index"))
 
@@ -39,7 +47,7 @@ def index():
 @app.route("/play/<int:row>/<int:col>")
 def play(row,col):
         #turn = session["turn"]
-        print(f"current value of Turn {session}")
+        print(f"current value of Turn in session {session}")
         session["board"][row][col] = session["turn"]
         print(f"current value of session {session}")
         if session["turn"] == player1:
@@ -65,9 +73,8 @@ def back():
         return redirect(url_for("load"))
 
 if __name__ == "__main__":
-    app.secret_key = 'super secret key'
-    app.config['SESSION_TYPE'] = 'filesystem'
-    session.permanent = False
-    sess.init_app(app)
+    #app.secret_key = 'super secret key'
+    #app.config['SESSION_TYPE'] = 'filesystem'
+    #session.permanent = False
     app.debug = True
     app.run()
