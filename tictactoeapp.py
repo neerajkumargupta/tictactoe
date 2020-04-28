@@ -1,4 +1,4 @@
-from flask import Flask, render_template, session, redirect, url_for
+from flask import Flask, render_template, session, redirect, url_for, request
 from flask_session import Session
 from tempfile import mkdtemp
 import sys
@@ -16,13 +16,17 @@ sess = Session(app)
 
 
 
-@app.route("/")
+@app.route("/", methods=['GET','POST'])
 def index():
     
     if "board" not in session:
         session["board"] = [[None,None,None], [None,None,None], [None,None,None]]
         session["turn"] = "X"
     
+    if request.method == 'POST':
+        
+
+
     return render_template("game.html", game=session["board"], turn=session["turn"])
 
 @app.route("/play/<int:row>/<int:col>")

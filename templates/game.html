@@ -1,5 +1,10 @@
 {% extends "layout.html" %}
 {% block body %}
+    <form method="POST">
+        Player Information:<br>
+      <input type="text" name="tag"><br>
+      <input type="submit" value="Submit">
+    </form>
         <table>
             {% for i in range(3) %}
               <tr>
