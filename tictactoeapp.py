@@ -5,14 +5,16 @@ import sys
 
 app = Flask(__name__)
 #app.run(host='0.0.0.0')
-#app.secret_key = "super secret key"
-app.config["SESSION_FILE_DIR"] = mkdtemp()
+app.secret_key = "super secret key"
+#app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_PERMANANET"] = False
-app.config["SESSION_TYPE"] = "filesystem"
-sess = Session()
-sess.init_app(app)
-session.permanent = False
-    
+#app.config["SESSION_TYPE"] = "filesystem"
+app.config["SECRET_KEY"] = "super secret key"
+Session(app)
+#sess.init_app(app)
+#session.permanent = False
+
+
 
 @app.route("/")
 def index():
@@ -44,3 +46,4 @@ def reset():
         print(f"reset  value of session {session}")
         sys.stdout.flush()
         return redirect(url_for("index"))
+
