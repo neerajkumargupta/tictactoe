@@ -23,7 +23,8 @@ def load():
 
 @app.route("/start", methods=["GET", "POST"])
 def start():
-    app.debug.log("Logging")
+    print(f"start:  current value of session {session}")
+    #app.logger.debug("Logging")
     player1 = request.form.get("Player1", "X")
     player2 = request.form.get("Player2", "Y")
     
@@ -42,7 +43,7 @@ def start():
 
 @app.route("/game")
 def index():
-    
+    print(f"index:  current value of session {session}")
     if "board" not in session:
         session["board"] = [[None,None,None], [None,None,None], [None,None,None]]
         session["turn"] = session["player1"]
@@ -51,7 +52,7 @@ def index():
 @app.route("/play/<int:row>/<int:col>")
 def play(row,col):
         #turn = session["turn"]
-        print(f"current value of Turn in session {session}")
+        print(f"play current value of in session {session}")
 
         session["board"][row][col] = session["turn"]
         print(f"current value of session {session}")
@@ -67,6 +68,7 @@ def play(row,col):
 
 @app.route("/reset")
 def reset():
+        print(f"reset:  current value of session {session}")
         session["board"] = [[None,None,None], [None,None,None], [None,None,None]]
         session["turn"] = session["player1"]
         print(f"reset  value of session {session}")
@@ -75,6 +77,7 @@ def reset():
 
 @app.route("/back")
 def back():
+        print(f"back:  current value of session {session}")
         session.pop("board")
         session.pop("turn")
         return redirect(url_for("load"))
