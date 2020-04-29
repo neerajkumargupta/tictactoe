@@ -9,11 +9,9 @@ app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_PERMANANET"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 app.config["SECRET_KEY"] = "super secret key"
-Session(app)
+sess = Session(app)
 #sess.init_app(app)
-#session.permanent = False
-#player1 = None
-#player2 = None
+
 
 @app.route("/")
 def load():
@@ -77,8 +75,6 @@ def back():
         return redirect(url_for("load"))
 
 if __name__ == "__main__":
-    #app.secret_key = 'super secret key'
-    #app.config['SESSION_TYPE'] = 'filesystem'
-    #session.permanent = False
+    session.permanent = False
     app.debug = True
     app.run()
