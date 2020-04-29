@@ -1,5 +1,9 @@
 from flask import Flask, render_template, session, redirect, url_for, request
 from flask_session import Session
+#from flask_kvsession import KVSessionExtension
+#from simplekv.memory.redisstore import RedisStore
+#import redis
+
 from tempfile import mkdtemp
 import sys
 
@@ -19,6 +23,7 @@ def load():
 
 @app.route("/start", methods=["GET", "POST"])
 def start():
+    app.debug.log("Logging")
     player1 = request.form.get("Player1", "X")
     player2 = request.form.get("Player2", "Y")
     
@@ -76,5 +81,4 @@ def back():
 
 if __name__ == "__main__":
     session.permanent = False
-    app.debug = True
-    app.run()
+    app.run(debug = True)
