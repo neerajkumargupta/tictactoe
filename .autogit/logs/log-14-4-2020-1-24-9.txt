@@ -1,0 +1,15 @@
+-------------------- Auto-Git Log --------------------
+		Thu May 14 2020 01:24:09 GMT+0530 (India Standard Time)
+------------------------------------------------------
+
+Modified files:
+
+
+Created files:
+* .autogit/logs/log-14-4-2020-0-54-3.txt
+
+
+Deleted files:
+
+
+Renamed files:
